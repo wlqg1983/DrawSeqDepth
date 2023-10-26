@@ -128,3 +128,56 @@ $ DrawSeqDepth.py -circle -reference MW553042.fasta -third SRR14924549_1.fastq -
 If the mitogenome is a circular sequence, two results for the whole genome and the junction sequence are saved in MW553042.minimap2.third.depth_results and MW553042.minimap2.third.depth_junction_results, respectively. The sequencing depth and coverage map of the whole genome and the junction sequence are shown in Figures 1C and 1D. 
 
 
+
+**5 Drawing the genome sequencing depth step by step**
+
+Advanced users who wish to adjust more parameters and monitor the results at each stage can use the following workflow to obtain the sequencing depth images of the reference genome step by step.
+
+**5.1** Align the reads to the reference genome
+
+Take the minimap2 program as an example:
+
+(1) For paired-end second-generation sequencing data, the command is as follows:
+
+$ minimap2 -ax sr reference.fasta forward.fastq reverse.fastq > out.sam 
+
+(2) The junction sequence (junction.seq.fast) of the circular reference genome can be calculated the sequencing depth.
+
+$ cut_join.py reference.fasta
+
+$ minimap2 -ax sr junction.seq.fasta forward.fastq reverse.fastq > out.sam
+
+To use the full range of features offered by each alignment program, please refer to the documentation provided with each alignment program. The help documentation offers comprehensive information on the features and options available for each program.
+
+**5.2** Convert SAM file to BAM file and filter unmapped reads
+
+Use samtools to convert the SAM file to a more efficient BAM format, -b for BAM output, -S for SAM input. The default FLAG value was four. 
+
+$ samtools view -b -F 4 out.sam > out.bam
+
+**5.3** Sort the BAM File
+
+$ samtools sort -@ 8 out.bam -o sort_out.bam
+
+Sort reads aligned to the reference genome, -o for specifying the output file name, -@ 8 for using eight threads. 
+
+**5.4** Calculate the sequencing depth
+
+$ samtools depth sort_out.bam > sort_out.depth.txt 
+
+Calculate the sequencing depth and output the results to a text file.
+
+**5.5** Draw the genomic sequencing depth and coverage map
+
+$ plot.py sort_out.depth.txt Depth eps 
+
+The input data is sort_out.depth.txt. The prefix and format of the output figure are “Depth” and “jpeg”. 
+
+**5.6** Build the index of BAM for visualization
+
+$ samtools index sort_out.bam sort_out.bam.bai
+
+After sending the reference genome ("fasta" format), the ".bam", and the ".bam.bai" files to the Tablet program, the results of the comparison can be visualized.
+
+
+
