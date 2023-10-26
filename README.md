@@ -3,7 +3,7 @@ The software tool, known as "DrawSeqDepth," appears to be a valuable resource fo
 
 **1 Install the "DrawSeqDepth"**
 
-**1.1 ** Install and activate the conda
+**1.1 **Install and activate the conda
 
 $ wget -c https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
