@@ -35,7 +35,9 @@ $ conda install -c conda-forge pandas -y
 $ conda install -c conda-forge matplotlib -y
 $ conda install -c conda-forge requests -y
 
+
 **2 Download the sequencing data and reference organelle genomes**
+
 Download and unzip the raw sequencing data:
 $ prefetch SRR20647929 SRR12597239 SRR14924549
 $ fastq-dump --split-files SRR20647929 SRR12597239 SRR14924549
@@ -46,7 +48,9 @@ If users encounter the error message "This sra toolkit installation has not been
 $ vdb-config --interactive
 The above script will take users to the interactive configuration interface. Enter 'X' to proceed and continue using sratools.
 
+
 **3 Drawing the genome sequencing depth as a pipeline using default parameters**
+
 The pseudo-code for running DrawSeqDepth is provided below:
 $ DrawSeqDepth.py [-h | --help] [-line | -circle] [-alignment <minimap2 | hisat2 | bowtie2 | bwa>] [-reference REFERENCE] [-single FASTQ | -pair FASTQ1 FASTQ2 | -third FASTQ] [-format <png | pdf | jpeg | bmp | tiff | gif | eps | svg>] [-output OUTPUT] [-flag FLAG]
 
@@ -63,7 +67,9 @@ The arguments are described below in detail:
 -line/-circle: Optional. Indicates whether the reference genome is circular (-circle) or linear (-line). If this parameter is missing, the default is linear.
 The above parameters do not need to be in order.
 
+
 **4 Three specific examples**
+
 (1) Align the single-read next-generation sequencing data to a plastome based on minimap2:
 $ DrawSeqDepth.py -reference ON055287.fasta -single SRR20647929_1.fastq -output ON055287.minimap2.single.depth
 The script above is the most streamlined code for the DrawSeqDepth program. The results obtained are saved in the folder ON055287.minimap2.single.depth_results. The genome is represented as a linear sequence. The sequencing depth and coverage map is shown in Figure 1A. The format of the output figure is “pdf”. The flag parameter for samtools is 4, excluding unmatched reads. 
