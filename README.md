@@ -3,7 +3,7 @@ The software tool, known as "DrawSeqDepth," appears to be a valuable resource fo
 
 **1 Install the "DrawSeqDepth"**
 
-1.1 Install and activate the conda
+**1.1 ** Install and activate the conda
 
 $ wget -c https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
@@ -11,7 +11,7 @@ $ bash Miniconda3-latest-Linux-x86_64.sh -b -p ~/miniconda
 
 $ echo 'export PATH="$HOME/miniconda/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
 
-1.2 Set up the conda working environment of DrawSeqDepth
+**1.2 ** Set up the conda working environment of DrawSeqDepth
 
 Install the packaged DrawSeqDepth program into the conda working environment.
 
@@ -29,13 +29,13 @@ $ cp DrawSeqDepth-main/* $CONDA_PREFIX/bin
 
 $ rm -rf DrawSeqDepth-main main.zip
 
-1.3 Install sra-tools 2.11.0 in offline mode, as the conda network installation of sra-tools does not meet the unzipping requirements for this study.
+**1.3 ** Install sra-tools 2.11.0 in offline mode, as the conda network installation of sra-tools does not meet the unzipping requirements for this study.
 
 $ wget -c https://anaconda.org/bioconda/sra-tools/2.11.0/download/linux-64/sra-tools-2.11.0-pl5321ha49a11a_3.tar.bz2 
 
 $ conda install --offline -f sra-tools-2.11.0-pl5321ha49a11a_3.tar.bz2
 
-1.4 Install other dependent programs.
+**1.4 ** Install other dependent programs.
 
 $ conda install -c bioconda samtools=1.17 -y
 
@@ -47,7 +47,7 @@ $ conda install -c bioconda bowtie2=2.5.1 -y
 
 $ conda install -c bioconda hisat2=2.2.1 -y
 
-1.5 Install the dependent Python packages.
+**1.5 ** Install the dependent Python packages.
 
 $ conda install -c conda-forge numpy -y
 
@@ -109,19 +109,19 @@ The above parameters do not need to be in order.
 
 **4 Three specific examples**
 
-(1) Align the single-read next-generation sequencing data to a plastome based on minimap2:
+**4.1 ** Align the single-read next-generation sequencing data to a plastome based on minimap2:
 
 $ DrawSeqDepth.py -reference ON055287.fasta -single SRR20647929_1.fastq -output ON055287.minimap2.single.depth
 
 The script above is the most streamlined code for the DrawSeqDepth program. The results obtained are saved in the folder ON055287.minimap2.single.depth_results. The genome is represented as a linear sequence. The sequencing depth and coverage map is shown in Figure 1A. The format of the output figure is “pdf”. The flag parameter for samtools is 4, excluding unmatched reads. 
 
-(2) Align the paired-end next-generation sequencing data to a plastome based on bowtie2:
+**4.2** Align the paired-end next-generation sequencing data to a plastome based on bowtie2:
 
 $ DrawSeqDepth.py -line -alignment bowtie2 -reference MT872375.fasta -pair SRR12597239_1.fastq SRR12597239_2.fastq -format png -output MT872375.bowtie2.single.depth -flag 12
 
 The script above is the most complete code available for the DrawSeqDepth program. The results obtained are saved in the folder MT872375.bowtie2.single.depth_results. The genome is considered to be a linear sequence. The flag value is set to 12 (=4+8), excluding unmatched reads (4) and secondary alignment reads (8). The sequencing depth and coverage map is shown in Figure 1B. 
 
-(3) Align the third-generation sequencing data (Nanopore) to a mitogenome based on minimap2:
+**4.3 ** Align the third-generation sequencing data (Nanopore) to a mitogenome based on minimap2:
 
 $ DrawSeqDepth.py -circle -reference MW553042.fasta -third SRR14924549_1.fastq -output MW553042.minimap2.third.depth -format jpeg
 
