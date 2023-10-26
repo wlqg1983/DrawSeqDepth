@@ -2,6 +2,7 @@
 The software tool, known as "DrawSeqDepth," appears to be a valuable resource for researchers working with organelle genomes, offering an easy-to-use solution for assessing the quality of genome assemblies. It could potentially streamline the research process and reduce the risk of errors in downstream analyses.
 
 **1 Install the "DrawSeqDepth"**
+
 1.1 Install and activate the conda
 $ wget -c https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 $ bash Miniconda3-latest-Linux-x86_64.sh -b -p ~/miniconda 
