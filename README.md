@@ -47,7 +47,7 @@ $ conda install -c bioconda bowtie2=2.5.1 -y
 
 $ conda install -c bioconda hisat2=2.2.1 -y
 
-**1.5 ** Install the dependent Python packages.
+**1.5** Install the dependent Python packages.
 
 $ conda install -c conda-forge numpy -y
 
