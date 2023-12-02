@@ -29,7 +29,7 @@ def cut_and_join(reference_file, output_file_name="junction.seq.fasta"):
     three_prime_end = sequence[-1000:]
 
     # Join the two ends to create the junction sequence
-    junction_sequence = five_prime_end + three_prime_end
+    junction_sequence =  three_prime_end + five_prime_end
 
     # Save the junction sequence to a FASTA file
     with open(output_file_name, 'w') as file:
